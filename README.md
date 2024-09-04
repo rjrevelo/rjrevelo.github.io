@@ -14,13 +14,20 @@
   Advisor: Profa. Dr. Esperanza López.
 
 ## Work Experience
-**Data Scientist @ Toyota Financial Services (_June 2022 - Present_)**
-- Uncovered and corrected missing step in production data pipeline which impacted over 70% of active accounts
-- Redeveloped loan originations model which resulted in 50% improvement in model performance and saving 1 million dollars in potential losses
+**Postdoctoral Researcher @ Vitreous Materials Laboratory at the Federal University of São Carlos (_June 2023 - Present_)**
+- Topic:  Unveiling the early and advanced stages of crystallization in glasses and their supercooled liquids
+- Advisor: Prof. Dr. Edgar D. Zanotto
 
-**Data Science Consultant @ Shawhin Talebi Ventures LLC (_December 2020 - Present_)**
+**Postdoctoral Researcher @ Research Team on Functional Materials and Catalysis – GIMFC. University of Nariño (_Mar 2020 - Apr 2022_)**
+- Topic:  Evaluation of the Potential of Glass-Ceramic Materials as Active Photocatalysts in Water Purification
+- Advisor: Prof. Dr. Luis Alejandro Galeano
+
+**Co-Founder and Operations Manager @ GAIA GreenTech (_Jan 2018 - Apr 2023_)**
 - Conducted data collection, processing, and analysis for novel study evaluating the impact of over 300 biometrics variables on human performance in hyper-realistic, live-fire training scenarios
-- Applied unsupervised deep learning approaches to longitudinal ICU data to discover novel sepsis sub-phenotypes
+
+**Technical and Quality Manager @ CENTREK, Colombia (_Apr 2010 - Jul 2012_)**
+- Topic:  Evaluation of the Potential of Glass-Ceramic Materials as Active Photocatalysts in Water Purification
+- Advisor: Prof. Dr. Luis Alejandro Galeano
 
 ## Projects
 ### Data-Driven EEG Band Discovery with Decision Trees
