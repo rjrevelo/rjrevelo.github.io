@@ -30,13 +30,13 @@
 
 ## Projects
 ### An Automated Identification and Traceability System for Reverse Logistics Operation of Waste Electrical and Electronic Equipment
-[Publication](https://bv.fapesp.br/pt/auxilios/110910/sistema-de-identificacao-e-rastreabilidade-na-logistica-reversa-de-residuos-de-equipamentos-eletroel/)
+[Process](https://bv.fapesp.br/pt/auxilios/110910/sistema-de-identificacao-e-rastreabilidade-na-logistica-reversa-de-residuos-de-equipamentos-eletroel/)
 
 The surge in demand for electronics, fueled by the pandemic, resulted in a substantial rise in electronic waste production. Despite mandatory reverse logistics in Brazil, challenges persist in its implementation. To tackle this issue, we propose an innovative traceability system leveraging deep learning and blockchain. This system would enable the identification and individual tracking of each electronic device, from manufacturing to final disposal, optimizing management and fostering a circular economy
 
 
 ### Development of a technological solution for the selective collection of mobile phones and tablets, aimed at reuse and recycling.
-[Publication]([https://www.mdpi.com/1424-8220/22/11/4240](https://bv.fapesp.br/pt/auxilios/105701/desenvolvimento-de-um-equipamento-para-coleta-seletiva-de-celulares-e-tablets-para-o-mercado-de-reus/))
+[Process](https://bv.fapesp.br/pt/auxilios/105701/desenvolvimento-de-um-equipamento-para-coleta-seletiva-de-celulares-e-tablets-para-o-mercado-de-reus/)
 
 The high turnover rate of cell phones and tablets, driven by the constant release of new models, generated a large volume of obsolete electronic devices. The lack of efficient disposal solutions led to accumulation in households or improper disposal. In response to this situation, an innovative project proposed the creation of an intelligent and interactive collection point, capable of identifying, diagnosing, and offering options for either purchase or recycling of cell phones and tablets. This initiative aimed to promote the circular economy, reward users for their sustainable actions, and encourage the proper disposal of electronics, contributing to the reduction of environmental impact.
 
