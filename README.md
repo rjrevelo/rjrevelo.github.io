@@ -23,26 +23,22 @@
 - Advisor: Prof. Dr. Luis Alejandro Galeano
 
 **Co-Founder and Operations Manager @ GAIA GreenTech (_Jan 2018 - Apr 2023_)**
-- Conducted data collection, processing, and analysis for novel study evaluating the impact of over 300 biometrics variables on human performance in hyper-realistic, live-fire training scenarios
+- Co-founded and led a sustainable startup for 5 years, driving its strategy, operations, and team collaboration within the circular economy. Delivered impactful sustainability results through innovative solutions and a focused commitment to environmental and social responsibility
 
 **Technical and Quality Manager @ CENTREK, Colombia (_Apr 2010 - Jul 2012_)**
-- Topic:  Evaluation of the Potential of Glass-Ceramic Materials as Active Photocatalysts in Water Purification
-- Advisor: Prof. Dr. Luis Alejandro Galeano
+- Managed technical and quality aspects at CENTREK, including laboratory control, equipment maintenance, and calibration.
 
 ## Projects
-### Data-Driven EEG Band Discovery with Decision Trees
-[Publication](https://www.mdpi.com/1424-8220/22/8/3048)
+### An Automated Identification and Traceability System for Reverse Logistics Operation of Waste Electrical and Electronic Equipment
+[Publication](https://bv.fapesp.br/pt/auxilios/110910/sistema-de-identificacao-e-rastreabilidade-na-logistica-reversa-de-residuos-de-equipamentos-eletroel/)
 
-Developed objective strategy for discovering optimal EEG bands based on signal power spectra using **Python**. This data-driven approach led to better characterization of the underlying power spectrum by identifying bands that outperformed the more commonly used band boundaries by a factor of two. The proposed method provides a fully automated and flexible approach to capturing key signal components and possibly discovering new indices of brain activity.
+The surge in demand for electronics, fueled by the pandemic, resulted in a substantial rise in electronic waste production. Despite mandatory reverse logistics in Brazil, challenges persist in its implementation. To tackle this issue, we propose an innovative traceability system leveraging deep learning and blockchain. This system would enable the identification and individual tracking of each electronic device, from manufacturing to final disposal, optimizing management and fostering a circular economy
 
-![EEG Band Discovery](/assets/img/eeg_band_discovery.jpeg)
 
-### Decoding Physical and Cognitive Impacts of Particulate Matter Concentrations at Ultra-Fine Scales
-[Publication](https://www.mdpi.com/1424-8220/22/11/4240)
+### Development of a technological solution for the selective collection of mobile phones and tablets, aimed at reuse and recycling.
+[Publication]([https://www.mdpi.com/1424-8220/22/11/4240](https://bv.fapesp.br/pt/auxilios/105701/desenvolvimento-de-um-equipamento-para-coleta-seletiva-de-celulares-e-tablets-para-o-mercado-de-reus/))
 
-Used **Matlab** to train over 100 machine learning models which estimated particulate matter concentrations based on a suite of over 300 biometric variables. We found biometric variables can be used to accurately estimate particulate matter concentrations at ultra-fine spatial scales with high fidelity (r2 = 0.91) and that smaller particles are better estimated than larger ones. Inferring environmental conditions solely from biometric measurements allows us to disentangle key interactions between the environment and the body.
-
-![Bike Study](/assets/img/bike_study.jpeg)
+The high turnover rate of cell phones and tablets, driven by the constant release of new models, generated a large volume of obsolete electronic devices. The lack of efficient disposal solutions led to accumulation in households or improper disposal. In response to this situation, an innovative project proposed the creation of an intelligent and interactive collection point, capable of identifying, diagnosing, and offering options for either purchase or recycling of cell phones and tablets. This initiative aimed to promote the circular economy, reward users for their sustainable actions, and encourage the proper disposal of electronics, contributing to the reduction of environmental impact.
 
 ## Talks & Lectures
 - Causality: The new science of an old question - GSP Seminar, Fall 2021
