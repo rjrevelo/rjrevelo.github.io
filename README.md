@@ -41,19 +41,18 @@ The surge in demand for electronics, fueled by the pandemic, resulted in a subst
 The high turnover rate of cell phones and tablets, driven by the constant release of new models, generated a large volume of obsolete electronic devices. The lack of efficient disposal solutions led to accumulation in households or improper disposal. In response to this situation, an innovative project proposed the creation of an intelligent and interactive collection point, capable of identifying, diagnosing, and offering options for either purchase or recycling of cell phones and tablets. This initiative aimed to promote the circular economy, reward users for their sustainable actions, and encourage the proper disposal of electronics, contributing to the reduction of environmental impact.
 
 ## Talks & Lectures
-- Causality: The new science of an old question - GSP Seminar, Fall 2021
-- Guest Lecture: Dimensionality Reduction - Big Data and Machine Learning for Scientific Discovery (PHYS 5336), Spring 2021
-- Guest Lecture: Fourier and Wavelet Transforms - Scientific Computing (PHYS 5315), Fall 2020
-- A Brief Introduction to Optimization - GSP Seminar, Fall 2019
-- Weeks of Welcome Poster Competition - UTD, Fall 2019
-- A Brief Introduction to Networks - GSP Seminar, Spring 2019
+- 8th Innovation and Entrepreneurship Meeting (VIII EIE), Federal Institute of São Paulo, IFSP, Catanduva Campus, 2022. Talk: "GAIA Green Tech: Smart Management and Responsible Disposal of Electronic Waste"
+- 65th Brazilian Ceramics Congress, 2022. Panelist in "Management, Logistics, and Destination: Circular Economy of Electronic Waste"
+- National Week of Science and Technology (SNCT), Federal Institute of São Paulo, IFSP, 2021. Talk: "Smart Management and Responsible Disposal of Electronics"
+- 7th Latin American Congress of Photocatalysis, Photoelectrochemistry, and Photobiology, 2021. Presentation: “Hematite and Magnetite modified glass ceramics as active visible light driven photocatalytic and photo Fenton degradation of water contaminants"
+- 12th Colombian Symposium on Catalysis, 2021. Presentation: “Evaluation of the Bi2O3.Fe2O3 Glass-Ceramic as a Fenton-like Photocatalyst for Degradation of Ibuprofen in Water Decontamination"
+- 58th Brazilian Ceramics Congress, 2014. Poster: “Reformulation of Ceramic Glazes from Recycled CRT Glass"
+- X BrasGlass - Brazilian Symposium on Glass and Related Materials, 2014. Panel: “Reformulation of Ceramic Glazes from Recycled CRT Glass"
+- III Symposium on Solid Waste (III SIRS), 2013. Poster: “Disassembly of Monitors for the Recovery of Glass from Cathode Ray Tubes"
 
-- [Data Science YouTube](https://www.youtube.com/channel/UCa9gErQ9AE5jT2DZLjXBIdA)
 
 ## Publications
 1. Barbosa, T. V., Dernowsek, J. A., Tobar, R. J. R., & Branciforti, M. C. (2022). Fabrication, morphological, mechanical and biological performance of 3D printed poly(epsilon-caprolactone)/bioglass composite scaffolds for bone tissue engineering applications. Biomedical Materials, 17(5), 055014. https://doi.org/10.1088/1748-605X/ac88ad
 2. Fernandes, R. G., Reis, R. M. C. V., Tobar, R. R., Zanotto, E. D., & Ferreira, E. B. (2019). Simulation and experimental study of the particle size distribution and pore effect on the crystallization of glass powders. Acta Materialia, 175, 130-139. https://doi.org/10.1016/j.actamat.2019.05.049
 3. Revelo, R. J., Menegazzo, A. P., & Ferreira, E. B. (2018). Cathode-Ray Tube panel glass replaces frit in transparent glazes for ceramic tiles. Ceramics International, 44(12), 13790-13796. https://doi.org/10.1016/j.ceramint.2018.04.222
 
-
-- [Data Science Blog](https://medium.com/@shawhin)
