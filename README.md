@@ -1,6 +1,11 @@
 # Material Scientist
 
-#### Technical Skills: Python, SQL, AWS, Snowflake, MATLAB
+#### Technical Skills:  
+- Glasses and Ceramics Processing
+- Ceramics, Glass, and Glass-Ceramics
+- Nucleation and Crystallization of Glasses
+- Materials Characterization and Nano/Microstructure Analysis
+- Sustainability and Circular Economy Practices
 
 ## Education
 - Ph.D. in Materials Science and Engineering | University of São Paulo (_Jan 2019_)  
