@@ -51,14 +51,9 @@ The high turnover rate of cell phones and tablets, driven by the constant releas
 - [Data Science YouTube](https://www.youtube.com/channel/UCa9gErQ9AE5jT2DZLjXBIdA)
 
 ## Publications
-1. Talebi S., Lary D.J., Wijeratne L. OH., and Lary, T. Modeling Autonomic Pupillary Responses from External Stimuli Using Machine Learning (2019). DOI: 10.26717/BJSTR.2019.20.003446
-2. Wijeratne, L.O.; Kiv, D.R.; Aker, A.R.; Talebi, S.; Lary, D.J. Using Machine Learning for the Calibration of Airborne Particulate Sensors. Sensors 2020, 20, 99.
-3. Lary, D.J.; Schaefer, D.; Waczak, J.; Aker, A.; Barbosa, A.; Wijeratne, L.O.H.; Talebi, S.; Fernando, B.; Sadler, J.; Lary, T.; Lary, M.D. Autonomous Learning of New Environments with a Robotic Team Employing Hyper-Spectral Remote Sensing, Comprehensive In-Situ Sensing and Machine Learning. Sensors 2021, 21, 2240. https://doi.org/10.3390/s21062240
-4. Zhang, Y.; Wijeratne, L.O.H.; Talebi, S.; Lary, D.J. Machine Learning for Light Sensor Calibration. Sensors 2021, 21, 6259. https://doi.org/10.3390/s21186259
-5. Talebi, S.; Waczak, J.; Fernando, B.; Sridhar, A.; Lary, D.J. Data-Driven EEG Band Discovery with Decision Trees. Preprints 2022, 2022030145 (doi: 10.20944/preprints202203.0145.v1).
-6. Fernando, B.A.; Sridhar, A.; Talebi, S.; Waczak, J.; Lary, D.J. Unsupervised Blink Detection Using Eye Aspect Ratio Values. Preprints 2022, 2022030200 (doi: 10.20944/preprints202203.0200.v1).
-7. Talebi, S. et al. Decoding Physical and Cognitive Impacts of PM Concentrations at Ultra-fine Scales, 29 March 2022, PREPRINT (Version 1) available at Research Square [https://doi.org/10.21203/rs.3.rs-1499191/v1]
-8. Lary, D.J. et al. (2022). Machine Learning, Big Data, and Spatial Tools: A Combination to Reveal Complex Facts That Impact Environmental Health. In: Faruque, F.S. (eds) Geospatial Technology for Human Well-Being and Health. Springer, Cham. https://doi.org/10.1007/978-3-030-71377-5_12
-9. Wijerante, L.O.H. et al. (2022). Advancement in Airborne Particulate Estimation Using Machine Learning. In: Faruque, F.S. (eds) Geospatial Technology for Human Well-Being and Health. Springer, Cham. https://doi.org/10.1007/978-3-030-71377-5_13
+1. Barbosa, T. V., Dernowsek, J. A., Tobar, R. J. R., & Branciforti, M. C. (2022). Fabrication, morphological, mechanical and biological performance of 3D printed poly(epsilon-caprolactone)/bioglass composite scaffolds for bone tissue engineering applications. Biomedical Materials, 17(5), 055014. https://doi.org/10.1088/1748-605X/ac88ad
+2. Fernandes, R. G., Reis, R. M. C. V., Tobar, R. R., Zanotto, E. D., & Ferreira, E. B. (2019). Simulation and experimental study of the particle size distribution and pore effect on the crystallization of glass powders. Acta Materialia, 175, 130-139. https://doi.org/10.1016/j.actamat.2019.05.049
+3. Revelo, R. J., Menegazzo, A. P., & Ferreira, E. B. (2018). Cathode-Ray Tube panel glass replaces frit in transparent glazes for ceramic tiles. Ceramics International, 44(12), 13790-13796. https://doi.org/10.1016/j.ceramint.2018.04.222
+
 
 - [Data Science Blog](https://medium.com/@shawhin)
