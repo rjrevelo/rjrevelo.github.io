@@ -38,14 +38,9 @@
   --shadow-h:  0 4px 16px rgba(0,0,0,.6), 0 0 0 1px rgba(196,152,90,.18);
 }
 
-html { scroll-behavior:smooth; cursor:none }
+html { scroll-behavior:smooth; }
 body { background:var(--bg); color:var(--text-b); font-family:var(--ff-body); overflow-x:hidden; line-height:1.7 }
 
-/* ── CURSOR ── */
-#cur  { position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .15s }
-#cur-r{ position:fixed;width:30px;height:30px;border:1px solid rgba(196,152,90,.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%) }
-body:has(a:hover) #cur,body:has(button:hover) #cur { width:18px;height:18px;background:var(--teal) }
-@media(hover:none){ #cur,#cur-r{display:none} html{cursor:auto} }
 
 /* ── NAV ── */
 nav {
@@ -60,7 +55,7 @@ nav {
 .n-dot   { width:5px;height:5px;border-radius:50%;background:var(--teal);animation:blink 2.4s infinite }
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 .n-links { display:flex;gap:2rem }
-.n-links a { font-family:var(--ff-mono);font-size:10.5px;color:var(--text-m);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;cursor:none }
+.n-links a { font-family:var(--ff-mono);font-size:10.5px;color:var(--text-m);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;transition:color .2s; }
 .n-links a:hover { color:var(--gold) }
 
 /* ══════════════════════════════════
@@ -327,7 +322,7 @@ nav {
 .flt {
   font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
   padding:7px 16px;border:1px solid var(--border-md);background:transparent;
-  color:var(--text-m);cursor:none;transition:all .2s;border-radius:20px;
+  color:var(--text-m);transition:all .2s;border-radius:20px;
 }
 .flt.on,.flt:hover { border-color:var(--gold);color:var(--gold);background:var(--gold-dim) }
 
@@ -341,7 +336,7 @@ nav {
   display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:start;
   opacity:1;transform:none;
   transition:box-shadow .22s,border-color .22s;
-  cursor:none;
+  
 }
 .pub-card.on { opacity:1;transform:translateY(0) }
 .pub-card:hover { box-shadow:var(--shadow-h);border-color:rgba(196,152,90,.22) }
@@ -368,7 +363,7 @@ nav {
   text-decoration:none;letter-spacing:.05em;white-space:nowrap;
   padding:6px 14px;border:1px solid rgba(196,152,90,.35);border-radius:20px;
   background:var(--gold-dim);
-  display:flex;align-items:center;gap:.3rem;transition:all .2s;cursor:none;
+  display:flex;align-items:center;gap:.3rem;transition:all .2s;
 }
 .pub-doi:hover { background:var(--gold);color:var(--bg) }
 .pub-doi::after { content:'↗' }
@@ -389,7 +384,7 @@ nav {
   font-family:var(--ff-mono);font-size:11.5px;color:var(--text-b);
   text-decoration:none;padding:.9rem 1.2rem;
   border:1px solid var(--border-md);border-radius:10px;background:var(--card);
-  transition:all .2s;letter-spacing:.04em;cursor:none;
+  transition:all .2s;letter-spacing:.04em;
 }
 .cl:hover { border-color:rgba(196,152,90,.35);color:var(--text-h);background:var(--card-hover);box-shadow:var(--shadow-h) }
 .cl-arr { margin-left:auto;color:var(--text-d);transition:transform .2s,color .2s }
@@ -449,9 +444,6 @@ footer { background:var(--bg);border-top:1px solid var(--border);padding:1.8rem 
 </style>
 </head>
 <body>
-
-<div id="cur"></div>
-<div id="cur-r"></div>
 
 <nav>
   <div class="n-brand"><span class="n-dot"></span>R.J. Revelo · Material Scientist</div>
@@ -764,50 +756,149 @@ footer { background:var(--bg);border-top:1px solid var(--border);padding:1.8rem 
   <div class="f-r">Material Scientist · São Carlos, Brazil</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-/* CURSOR */
-const cur=document.getElementById('cur'),curR=document.getElementById('cur-r');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
-(function tick(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(tick)})();
-
-/* THREE.JS WIREFRAME */
+/* WIREFRAME BACKGROUND — pure Canvas 2D, no dependencies */
 (function(){
-  const canvas=document.getElementById('three-canvas');
-  const section=document.getElementById('hero');
-  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
-  renderer.setClearColor(0x000000,0);
-  const scene=new THREE.Scene();
-  const camera=new THREE.PerspectiveCamera(60,1,.1,100);
-  camera.position.set(0,0,7);
-  function resize(){const w=section.offsetWidth,h=section.offsetHeight;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix()}
-  resize();window.addEventListener('resize',resize);
-  const C={gold:new THREE.Color(0xc4985a),teal:new THREE.Color(0x5eaa94),dim:new THREE.Color(0x2a2a3a),white:new THREE.Color(0xf0ede8)};
-  function wf(geo,color,op){return new THREE.Mesh(geo,new THREE.MeshBasicMaterial({color,wireframe:true,transparent:true,opacity:op}))}
-  const icoBig=wf(new THREE.IcosahedronGeometry(2.2,1),C.gold,.16);scene.add(icoBig);
-  const octA=wf(new THREE.OctahedronGeometry(1.4,0),C.teal,.28);scene.add(octA);
-  const dodMesh=wf(new THREE.DodecahedronGeometry(3.8,0),C.dim,.1);scene.add(dodMesh);
-  const edges=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.IcosahedronGeometry(2.2,1)),new THREE.LineBasicMaterial({color:C.teal,transparent:true,opacity:.2}));scene.add(edges);
-  const axMat=new THREE.LineBasicMaterial({color:C.gold,transparent:true,opacity:.12});
-  [-1,1].forEach(s=>{[[s*4.5,0,0],[0,s*4.5,0],[0,0,s*4.5]].forEach(p=>{const g=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0),new THREE.Vector3(...p)]);scene.add(new THREE.Line(g,axMat))})});
-  const orbits=[];
-  [{r:3.2,sp:.38,ph:0,tl:.4,c:C.teal,op:.5},{r:2.8,sp:.28,ph:2.1,tl:-.6,c:C.gold,op:.45},{r:3.5,sp:.22,ph:4.2,tl:1.1,c:C.white,op:.22},{r:2.4,sp:.5,ph:1.05,tl:.8,c:C.teal,op:.38},{r:3.8,sp:.18,ph:3.14,tl:-.3,c:C.gold,op:.32}].forEach(d=>{const m=wf(new THREE.TetrahedronGeometry(.55,0),d.c,d.op);scene.add(m);orbits.push({mesh:m,...d})});
-  let t=0,tx=0,ty=0,mouseX=0,mouseY=0;
-  document.addEventListener('mousemove',e=>{mouseX=(e.clientX/window.innerWidth-.5)*2;mouseY=(e.clientY/window.innerHeight-.5)*2});
-  function animate(){
-    requestAnimationFrame(animate);t+=.008;
-    icoBig.rotation.x=t*.25;icoBig.rotation.y=t*.18;icoBig.rotation.z=t*.1;
-    octA.rotation.x=-t*.3;octA.rotation.y=t*.22;
-    edges.rotation.copy(icoBig.rotation);
-    dodMesh.rotation.x=t*.08;dodMesh.rotation.y=-t*.12;
-    orbits.forEach(o=>{const a=t*o.sp+o.ph;o.mesh.position.set(Math.cos(a)*o.r,Math.sin(a*.7+o.tl)*o.r*.5,Math.sin(a)*o.r*.6);o.mesh.rotation.x=t*1.2;o.mesh.rotation.y=t*.9});
-    tx+=(mouseX*.6-tx)*.04;ty+=(mouseY*.4-ty)*.04;
-    camera.position.x=tx;camera.position.y=-ty;camera.lookAt(0,0,0);
-    renderer.render(scene,camera);
+  const cv = document.getElementById('three-canvas');
+  const ctx = cv.getContext('2d');
+  let W, H, t = 0;
+  let mouseX = 0, mouseY = 0, camX = 0, camY = 0;
+
+  function resize(){
+    W = cv.width  = window.innerWidth;
+    H = cv.height = window.innerHeight;
   }
-  animate();
+  resize();
+  window.addEventListener('resize', resize);
+  document.addEventListener('mousemove', e => {
+    mouseX = (e.clientX / window.innerWidth  - .5) * 1.2;
+    mouseY = (e.clientY / window.innerHeight - .5) * 1.2;
+  });
+
+  /* -- 3D projection helpers -- */
+  function rotX(p, a){ const c=Math.cos(a),s=Math.sin(a); return [p[0], p[1]*c-p[2]*s, p[1]*s+p[2]*c]; }
+  function rotY(p, a){ const c=Math.cos(a),s=Math.sin(a); return [p[0]*c+p[2]*s, p[1], -p[0]*s+p[2]*c]; }
+  function rotZ(p, a){ const c=Math.cos(a),s=Math.sin(a); return [p[0]*c-p[1]*s, p[0]*s+p[1]*c, p[2]]; }
+  function project(p, fov){
+    const z = fov / (fov + p[2] + 8);
+    return [
+      p[0] * z * Math.min(W,H) * 0.42 + W/2 + camX * W * 0.08,
+      p[1] * z * Math.min(W,H) * 0.42 + H/2 + camY * H * 0.08
+    ];
+  }
+
+  /* icosahedron vertices */
+  const phi = (1 + Math.sqrt(5)) / 2;
+  const icoVerts = [
+    [-1,phi,0],[1,phi,0],[-1,-phi,0],[1,-phi,0],
+    [0,-1,phi],[0,1,phi],[0,-1,-phi],[0,1,-phi],
+    [phi,0,-1],[phi,0,1],[-phi,0,-1],[-phi,0,1]
+  ].map(v => { const l = Math.hypot(...v); return v.map(x => x/l * 2.4); });
+
+  const icoEdges = [
+    [0,1],[0,5],[0,7],[0,10],[0,11],
+    [1,5],[1,7],[1,8],[1,9],
+    [2,3],[2,6],[2,10],[2,11],[2,4],
+    [3,4],[3,6],[3,8],[3,9],
+    [4,5],[4,9],[4,11],
+    [5,9],[5,11],[6,7],[6,8],[6,10],
+    [7,8],[7,10],[8,9],[10,11]
+  ];
+
+  /* octahedron */
+  const octVerts = [[1.6,0,0],[-1.6,0,0],[0,1.6,0],[0,-1.6,0],[0,0,1.6],[0,0,-1.6]];
+  const octEdges = [[0,2],[0,3],[0,4],[0,5],[1,2],[1,3],[1,4],[1,5],[2,4],[2,5],[3,4],[3,5]];
+
+  /* orbiting tetrahedra */
+  const tetraBase = [[0,1,0],[-0.866,-0.5,0],[0.866,-0.5,0],[0,-0.333,0.816]].map(v=>v.map(x=>x*0.6));
+  const tetraEdges = [[0,1],[0,2],[0,3],[1,2],[1,3],[2,3]];
+  const orbs = [
+    {r:3.4, sp:0.38, ph:0,    tilt:0.4,  col:'rgba(196,152,90,'},
+    {r:3.0, sp:0.26, ph:2.1,  tilt:-0.6, col:'rgba(94,170,148,'},
+    {r:3.7, sp:0.20, ph:4.2,  tilt:1.1,  col:'rgba(240,237,232,'},
+    {r:2.6, sp:0.48, ph:1.05, tilt:0.8,  col:'rgba(196,152,90,'},
+    {r:4.0, sp:0.16, ph:3.14, tilt:-0.3, col:'rgba(94,170,148,'},
+  ];
+
+  /* axis lines */
+  const axes = [[4.5,0,0],[-4.5,0,0],[0,4.5,0],[0,-4.5,0],[0,0,4.5],[0,0,-4.5]];
+  const axPairs = [[0,1],[2,3],[4,5]];
+
+  function transformVerts(verts, rx, ry, rz){
+    return verts.map(v => {
+      let p = rotX(v, rx);
+      p = rotY(p, ry);
+      p = rotZ(p, rz);
+      return p;
+    });
+  }
+
+  function drawEdges(verts, edges, color, alpha, fov=500){
+    ctx.strokeStyle = color + alpha + ')';
+    ctx.lineWidth = 0.7;
+    edges.forEach(([a,b]) => {
+      const p1 = project(verts[a], fov);
+      const p2 = project(verts[b], fov);
+      ctx.beginPath(); ctx.moveTo(p1[0],p1[1]); ctx.lineTo(p2[0],p2[1]); ctx.stroke();
+    });
+  }
+
+  function frame(){
+    requestAnimationFrame(frame);
+    t += 0.008;
+
+    /* smooth camera */
+    camX += (mouseX * 0.08 - camX) * 0.05;
+    camY += (mouseY * 0.06 - camY) * 0.05;
+
+    ctx.clearRect(0,0,W,H);
+
+    const FOV = Math.min(W, H) * 0.9;
+
+    /* axis lines */
+    const axVerts = transformVerts(axes, t*0.12, t*0.18, t*0.07);
+    axPairs.forEach(([a,b]) => {
+      const p1 = project(axVerts[a], FOV);
+      const p2 = project(axVerts[b], FOV);
+      ctx.strokeStyle = 'rgba(196,152,90,0.10)'; ctx.lineWidth = 0.5;
+      ctx.beginPath(); ctx.moveTo(p1[0],p1[1]); ctx.lineTo(p2[0],p2[1]); ctx.stroke();
+    });
+
+    /* icosahedron */
+    const icoT = transformVerts(icoVerts, t*0.25, t*0.18, t*0.10);
+    drawEdges(icoT, icoEdges, 'rgba(196,152,90,', 0.20, FOV);
+
+    /* octahedron inner */
+    const octT = transformVerts(octVerts, -t*0.30, t*0.22, t*0.05);
+    drawEdges(octT, octEdges, 'rgba(94,170,148,', 0.28, FOV);
+
+    /* orbiting tetrahedra */
+    orbs.forEach((o, i) => {
+      const angle = t * o.sp + o.ph;
+      const ox = Math.cos(angle) * o.r;
+      const oy = Math.sin(angle * 0.7 + o.tilt) * o.r * 0.45;
+      const oz = Math.sin(angle) * o.r * 0.55;
+      const tr = t * 1.2 + i;
+      const tv = tetraBase.map(v => {
+        let p = rotX(v, tr); p = rotY(p, tr*0.7);
+        return [p[0]+ox, p[1]+oy, p[2]+oz];
+      });
+      drawEdges(tv, tetraEdges, o.col, 0.45, FOV);
+      /* dot at center */
+      const cp = project([ox,oy,oz], FOV);
+      ctx.beginPath(); ctx.arc(cp[0],cp[1],1.2,0,Math.PI*2);
+      ctx.fillStyle = o.col + '0.7)'; ctx.fill();
+    });
+
+    /* dots on icosahedron vertices */
+    icoT.forEach(v => {
+      const p = project(v, FOV);
+      ctx.beginPath(); ctx.arc(p[0],p[1],1.5,0,Math.PI*2);
+      ctx.fillStyle = 'rgba(196,152,90,0.55)'; ctx.fill();
+    });
+  }
+
+  frame();
 })();
 
 /* SCROLL REVEAL — robust version */
