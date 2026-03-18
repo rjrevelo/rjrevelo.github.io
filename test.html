@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Canvas Test</title>
+<style>
+body{margin:0;background:#08080c}
+canvas{display:block;width:100vw;height:100vh}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<script>
+var cv=document.getElementById('cv');
+var ctx=cv.getContext('2d');
+cv.width=window.innerWidth;
+cv.height=window.innerHeight;
+var W=cv.width, H=cv.height, t=0, mx=0.5, my=0.5;
+
+document.addEventListener('mousemove',function(e){
+  mx=e.clientX/W; my=e.clientY/H;
+});
+
+var sp=1.8, nodes=[];
+var cols=7,rows=5,deps=4;
+for(var x=0;x<cols;x++)for(var y=0;y<rows;y++)for(var z=0;z<deps;z++){
+  nodes.push({x:(x-(cols-1)/2)*sp,y:(y-(rows-1)/2)*sp,z:(z-(deps-1)/2)*sp,type:0});
+  nodes.push({x:(x-(cols-1)/2)*sp+sp/2,y:(y-(rows-1)/2)*sp+sp/2,z:(z-(deps-1)/2)*sp+sp/2,type:1});
+}
+
+function rot(p,ax,ay){
+  var x=p[0],y=p[1],z=p[2];
+  var c1=Math.cos(ax),s1=Math.sin(ax);
+  var y2=y*c1-z*s1, z2=y*s1+z*c1;
+  var c2=Math.cos(ay),s2=Math.sin(ay);
+  return[x*c2+z2*s2, y2, -x*s2+z2*c2];
+}
+
+function proj(p){
+  var sc=Math.min(W,H)*0.088, fov=380;
+  var z=fov/(fov+p[2]+14);
+  return[p[0]*z*sc+W/2, p[1]*z*sc+H/2, z];
+}
+
+function frame(){
+  requestAnimationFrame(frame);
+  t+=0.006;
+  var ax=t*0.18+(my-0.5)*0.5;
+  var ay=t*0.12+(mx-0.5)*0.6;
+  ctx.clearRect(0,0,W,H);
+
+  var pts=nodes.map(function(n){
+    var r=rot([n.x,n.y,n.z],ax,ay);
+    var p=proj(r);
+    return{px:p[0],py:p[1],pz:p[2],type:n.type};
+  });
+
+  for(var i=0;i<nodes.length;i++){
+    for(var j=i+1;j<nodes.length;j++){
+      var dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,dz=nodes[i].z-nodes[j].z;
+      var d=Math.sqrt(dx*dx+dy*dy+dz*dz);
+      if(d<sp*1.02){
+        var az=(pts[i].pz+pts[j].pz)*0.5*0.25;
+        ctx.strokeStyle='rgba(196,152,90,'+az+')';
+        ctx.lineWidth=0.6;
+        ctx.beginPath();
+        ctx.moveTo(pts[i].px,pts[i].py);
+        ctx.lineTo(pts[j].px,pts[j].py);
+        ctx.stroke();
+      }
+    }
+  }
+
+  pts.forEach(function(p){
+    var r=Math.max((p.type===0?4:2.5)*p.pz,0.5);
+    ctx.beginPath();
+    ctx.arc(p.px,p.py,r,0,Math.PI*2);
+    ctx.fillStyle=p.type===0
+      ?'rgba(196,152,90,'+(p.pz*0.8)+')'
+      :'rgba(94,170,148,'+(p.pz*0.65)+')';
+    ctx.fill();
+  });
+}
+
+frame();
+</script>
+</body>
+</html>

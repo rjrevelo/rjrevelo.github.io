@@ -4,7 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Raúl J. Revelo Tobar — Material Scientist</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* Safe system font fallbacks — no external requests */
+  :root{
+    --ff-display: 'Impact', 'Arial Narrow', sans-serif;
+    --ff-body:    Georgia, 'Times New Roman', serif;
+    --ff-mono:    'Courier New', Courier, monospace;
+  }
+</style>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 
@@ -458,7 +465,7 @@ footer { background:var(--bg);border-top:1px solid var(--border);padding:1.8rem 
 
 <!-- ══════════ HERO ══════════ -->
 <section id="hero">
-  <canvas id="three-canvas"></canvas>
+  <canvas id="three-canvas" width="1920" height="1080"></canvas>
   <div class="hero-veil"></div>
   <div class="hero-inner">
     <div class="hero-text">
@@ -757,70 +764,78 @@ footer { background:var(--bg);border-top:1px solid var(--border);padding:1.8rem 
 </footer>
 
 <script>
-(function(){
-  const cv=document.getElementById('three-canvas');
-  const ctx=cv.getContext('2d');
-  let W,H,t=0,mx=0,my=0,cx=0,cy=0;
+/* BCC ATOMIC LATTICE — same code as test.html */
+var cv2=document.getElementById('three-canvas');
+var ctx2=cv2.getContext('2d');
+cv2.width=window.innerWidth;
+cv2.height=window.innerHeight;
+var W2=cv2.width, H2=cv2.height, t2=0, mx2=0.5, my2=0.5;
 
-  function resize(){
-    W=cv.width=window.innerWidth;
-    H=cv.height=window.innerHeight;
-  }
-  window.addEventListener('resize',resize);
-  document.addEventListener('mousemove',e=>{
-    mx=(e.clientX/window.innerWidth-.5);
-    my=(e.clientY/window.innerHeight-.5);
+window.addEventListener('resize',function(){
+  cv2.width=window.innerWidth;
+  cv2.height=window.innerHeight;
+  W2=cv2.width; H2=cv2.height;
+});
+document.addEventListener('mousemove',function(e){
+  mx2=e.clientX/W2; my2=e.clientY/H2;
+});
+
+var sp2=1.8, nodes2=[];
+var cols2=7,rows2=5,deps2=4;
+for(var x2=0;x2<cols2;x2++)for(var y2=0;y2<rows2;y2++)for(var z2=0;z2<deps2;z2++){
+  nodes2.push({x:(x2-(cols2-1)/2)*sp2,y:(y2-(rows2-1)/2)*sp2,z:(z2-(deps2-1)/2)*sp2,type:0});
+  nodes2.push({x:(x2-(cols2-1)/2)*sp2+sp2/2,y:(y2-(rows2-1)/2)*sp2+sp2/2,z:(z2-(deps2-1)/2)*sp2+sp2/2,type:1});
+}
+
+function rot2(p,ax,ay){
+  var x=p[0],y=p[1],z=p[2];
+  var c1=Math.cos(ax),s1=Math.sin(ax);
+  var y2=y*c1-z*s1, z2=y*s1+z*c1;
+  var c2=Math.cos(ay),s2=Math.sin(ay);
+  return[x*c2+z2*s2, y2, -x*s2+z2*c2];
+}
+function proj2(p){
+  var sc=Math.min(W2,H2)*0.088, fov=380;
+  var z=fov/(fov+p[2]+14);
+  return[p[0]*z*sc+W2/2, p[1]*z*sc+H2/2, z];
+}
+function frame2(){
+  requestAnimationFrame(frame2);
+  t2+=0.006;
+  var ax=t2*0.18+(my2-0.5)*0.5;
+  var ay=t2*0.12+(mx2-0.5)*0.6;
+  ctx2.clearRect(0,0,W2,H2);
+  var pts2=nodes2.map(function(n){
+    var r=rot2([n.x,n.y,n.z],ax,ay);
+    var p=proj2(r);
+    return{px:p[0],py:p[1],pz:p[2],type:n.type};
   });
-
-  const rX=(p,a)=>{const c=Math.cos(a),s=Math.sin(a);return[p[0],p[1]*c-p[2]*s,p[1]*s+p[2]*c]};
-  const rY=(p,a)=>{const c=Math.cos(a),s=Math.sin(a);return[p[0]*c+p[2]*s,p[1],-p[0]*s+p[2]*c]};
-  const pr=(p)=>{const sc=Math.min(W,H)*0.38,z=600/(600+p[2]+6);return[p[0]*z*sc+W/2+cx*60,p[1]*z*sc+H/2+cy*40]};
-  const tf=(vs,ax,ay)=>vs.map(v=>{let p=rX(v,ax);return rY(p,ay)});
-
-  const phi=(1+Math.sqrt(5))/2;
-  const IV=[[-1,phi,0],[1,phi,0],[-1,-phi,0],[1,-phi,0],[0,-1,phi],[0,1,phi],[0,-1,-phi],[0,1,-phi],[phi,0,-1],[phi,0,1],[-phi,0,-1],[-phi,0,1]].map(v=>{const l=Math.hypot(...v);return v.map(x=>x/l*2.2)});
-  const IE=[[0,1],[0,5],[0,7],[0,10],[0,11],[1,5],[1,7],[1,8],[1,9],[2,3],[2,6],[2,10],[2,11],[2,4],[3,4],[3,6],[3,8],[3,9],[4,5],[4,9],[4,11],[5,9],[5,11],[6,7],[6,8],[6,10],[7,8],[7,10],[8,9],[10,11]];
-  const OV=[[1.4,0,0],[-1.4,0,0],[0,1.4,0],[0,-1.4,0],[0,0,1.4],[0,0,-1.4]];
-  const OE=[[0,2],[0,3],[0,4],[0,5],[1,2],[1,3],[1,4],[1,5],[2,4],[2,5],[3,4],[3,5]];
-  const TB=[[0,.5,0],[-.43,-.25,0],[.43,-.25,0],[0,-.17,.7]].map(v=>v.map(x=>x*.65));
-  const TE=[[0,1],[0,2],[0,3],[1,2],[1,3],[2,3]];
-  const ORBS=[{r:3.2,sp:.38,ph:0,tl:.4,g:1},{r:2.9,sp:.27,ph:2.1,tl:-.5,g:0},{r:3.6,sp:.2,ph:4.2,tl:1,g:1},{r:2.5,sp:.48,ph:1,tl:.8,g:0}];
-
-  function edges(vs,es,col,al){
-    ctx.strokeStyle=`rgba(${col},${al})`;ctx.lineWidth=.7;
-    es.forEach(([a,b])=>{const A=pr(vs[a]),B=pr(vs[b]);ctx.beginPath();ctx.moveTo(A[0],A[1]);ctx.lineTo(B[0],B[1]);ctx.stroke()});
+  for(var i=0;i<nodes2.length;i++){
+    for(var j=i+1;j<nodes2.length;j++){
+      var dx=nodes2[i].x-nodes2[j].x,dy=nodes2[i].y-nodes2[j].y,dz=nodes2[i].z-nodes2[j].z;
+      var d=Math.sqrt(dx*dx+dy*dy+dz*dz);
+      if(d<sp2*1.02){
+        var az=(pts2[i].pz+pts2[j].pz)*0.5*0.25;
+        ctx2.strokeStyle='rgba(196,152,90,'+az+')';
+        ctx2.lineWidth=0.6;
+        ctx2.beginPath();
+        ctx2.moveTo(pts2[i].px,pts2[i].py);
+        ctx2.lineTo(pts2[j].px,pts2[j].py);
+        ctx2.stroke();
+      }
+    }
   }
-
-  function draw(){
-    requestAnimationFrame(draw);t+=.008;
-    cx+=(mx-cx)*.06;cy+=(my-cy)*.06;
-    ctx.clearRect(0,0,W,H);
-
-    const AX=tf([[3,0,0],[-3,0,0],[0,3,0],[0,-3,0],[0,0,3],[0,0,-3]],t*.1,t*.15);
-    [[0,1],[2,3],[4,5]].forEach(([a,b])=>{
-      const A=pr(AX[a]),B=pr(AX[b]);
-      ctx.strokeStyle='rgba(196,152,90,.09)';ctx.lineWidth=.5;
-      ctx.beginPath();ctx.moveTo(A[0],A[1]);ctx.lineTo(B[0],B[1]);ctx.stroke();
-    });
-
-    const IT=tf(IV,t*.22,t*.16);
-    edges(IT,IE,'196,152,90',.18);
-    IT.forEach(v=>{const p=pr(v);ctx.beginPath();ctx.arc(p[0],p[1],1.5,0,Math.PI*2);ctx.fillStyle='rgba(196,152,90,.6)';ctx.fill()});
-
-    const OT=tf(OV,-t*.28,t*.2);
-    edges(OT,OE,'94,170,148',.25);
-
-    ORBS.forEach((o,i)=>{
-      const a=t*o.sp+o.ph;
-      const ox=Math.cos(a)*o.r,oy=Math.sin(a*.7+o.tl)*o.r*.4,oz=Math.sin(a)*o.r*.5;
-      const tr=t*1.1+i;
-      const tv=TB.map(v=>{let p=rX(v,tr);p=rY(p,tr*.8);return[p[0]+ox,p[1]+oy,p[2]+oz]});
-      edges(tv,TE,o.g?'196,152,90':'94,170,148',.42);
-    });
-  }
-
-  requestAnimationFrame(()=>{resize();draw()});
-})();
+  pts2.forEach(function(p){
+    var r=Math.max((p.type===0?4:2.5)*p.pz,0.5);
+    ctx2.beginPath();
+    ctx2.arc(p.px,p.py,r,0,Math.PI*2);
+    ctx2.fillStyle=p.type===0
+      ?'rgba(196,152,90,'+(p.pz*0.8)+')'
+      :'rgba(94,170,148,'+(p.pz*0.65)+')';
+    ctx2.fill();
+  });
+}
+frame2();
 
 /* SCROLL REVEAL — robust version */
 function revealAll() {
